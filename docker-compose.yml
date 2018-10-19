@@ -1,0 +1,100 @@
+version: '3.4'
+services:
+  db-calipso:
+     image: mysql
+     container_name: mysql0-calipso
+     restart: always
+     command: mysqld --default-authentication-plugin=mysql_native_password
+     environment:
+       MYSQL_ROOT_PASSWORD: pass
+       MYSQL_DATABASE: calipsoplus
+       MYSQL_USER: admin 
+       MYSQL_PASSWORD: admincamps
+     ports:
+       - "3306:3306"
+     volumes:
+      - ./scripts/mysql/calipsoplus.sql:/docker-entrypoint-initdb.d/dump.sql
+
+  db-guacamole:
+     image: mysql
+     container_name: mysql0-guacd
+     restart: always
+     command: mysqld --default-authentication-plugin=mysql_native_password
+     environment:
+       MYSQL_ROOT_PASSWORD: pass
+       MYSQL_DATABASE: guacdb
+       MYSQL_USER: admin 
+       MYSQL_PASSWORD: admincamps
+     ports:
+       - "3307:3306"
+     volumes:
+       - ./scripts/mysql/guacamole.sql:/docker-entrypoint-initdb.d/dump.sql
+
+  nginx:
+      image: nginx:1.13-alpine
+      container_name: nginx01
+      ports:
+        - "80:80"
+      volumes:
+        - ./config/nginx:/etc/nginx/conf.d
+      depends_on:
+       - web-front
+       - web-back
+       - guacamole
+     
+  web-back:
+      build: .
+      container_name: django01
+      command: bash -c "python manage.py migrate && gunicorn calipsoplus.wsgi -b 0:8000"
+      restart: always
+      depends_on:
+        - db-calipso
+        - db-guacamole
+
+  web-front:
+      build: 
+        context : .
+        dockerfile: Dockerfile.front
+      container_name: angular01
+      command: npm start
+
+  guacd:
+     container_name: guacd01
+     hostname: guacd
+     image: guacamole/guacd
+     restart: always
+     ports:
+      - 4822:4822
+     depends_on:
+      - db-guacamole  
+
+  guacamole:
+    container_name: guacamole01
+    image: guacamole/guacamole
+    restart: always
+    ports:
+      - 8080:8080
+    environment:
+      GUACD_HOSTNAME: guacd
+      GUACD_PORT: 4822
+      MYSQL_HOSTNAME: db-guacamole
+      MYSQL_DATABASE: guacdb
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admincamps
+      DATABASE_PORT: 3306
+    depends_on:
+      - guacd
+    links:
+      - guacd
+    volumes:
+      - ./scripts/mysql/mysql-connector-java-5.1.46-bin.jar:/opt/guacamole/mysql/mysql-connector-java-5.1.46-bin.jar
+      - ./scripts/guacamole/guac_access.html:/usr/local/tomcat/webapps/ROOT/index.html
+
+  mock-login:
+    build:
+      context : ./mock-login/calipsoplus-local-login-mock
+      dockerfile: Dockerfile
+    container_name: mocklogin01
+    ports:
+      - 8002:8000
+
