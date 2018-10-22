@@ -1,2 +1,2 @@
 echo "mock login"
-git clone git@git.cells.es:mis/calipsoplus-local-login-mock.git
+git clone https://github.com/acampsm/calipsoplus-local-login-mock.git
