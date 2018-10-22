@@ -1,3 +1,3 @@
 echo "backend..."
-git clone git@git.cells.es:mis/calipsoplus-backend.git
+git clone https://github.com/acampsm/calipsoplus-backend.git
 
