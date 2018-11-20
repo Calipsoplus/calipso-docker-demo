@@ -1,9 +1,5 @@
 FROM node:8-alpine as builder
 
-COPY ./frontend/calipsoplus-frontend/package.json ./frontend/calipsoplus-frontend/package-lock.json ./
-
-
-
 RUN npm set progress=false && npm config set depth 0 && npm cache clean --force
 
 ## Storing node modules on a separate layer will prevent unnecessary npm installs at each build
@@ -15,4 +11,4 @@ COPY ./frontend/calipsoplus-frontend/. .
 COPY ./config/logo/calipso-constants.ts ./src/app/calipso-constants.ts
 
 ## Build the angular app in production mode and store the artifacts in dist folder
-RUN $(npm bin)/ng build --prod --env=docker --base-href '/'
+RUN $(npm bin)/ng build --prod --configuration=docker --base-href '/'
