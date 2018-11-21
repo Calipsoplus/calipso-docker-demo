@@ -49,19 +49,12 @@ To change default logo
 $ cd /config/logo/
 $ vim calipso-constants.ts # url of the logo
 ```
-# Facilities
-To add some facilities
-```bash
-cd scripts/manage
-vim default_facilities.json
-sh import_facilities.sh # import facilities from json
-```
 
-# Experiments
+# Experiments/Sessions
 To add some experiments 
 ```bash
 $ cd scripts/manage
-$ sh import_experiments_calipso1.sh # insert experiments to user calipso1
+$ sh populate_calipso1.sh # insert experiments an sessions to user calipso1
 ```
 
 # All done
