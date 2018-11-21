@@ -1,2 +1,2 @@
 echo "frontend..."
-git clone https://github.com/acampsm/calipsoplus-frontend.git
+git clone https://github.com/Calipsoplus/calipsoplus-frontend.git
