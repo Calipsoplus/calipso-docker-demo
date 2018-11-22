@@ -9,7 +9,8 @@ Get latest source
 ```bash
 $ git clone https://github.com/Calipsoplus/calipso-docker-demo.git
 ```
-Folders organization
+
+## Folders organization
 ```bash
 C:.               
 ├───backend             <-- here you have to clone the backend project       
@@ -37,6 +38,16 @@ $ cd mock-login
 $ git clone https://github.com/Calipsoplus/calipsoplus-local-login-mock.git
 $ cd ..
 ```
+
+## Docker server
+You have to set the docker-server IP where dockerd is running in settings_docker file.
+```
+/backend/calipsoplus-backend/calipsoplus/settings_docker.py
+
+DOCKER_URL_DAEMON = "tcp://IP_DOCKER_SERVER_DAEMON:2375"
+REMOTE_MACHINE_IP = "IP_DOCKER_SERVER_DAEMON"
+```
+
 ## Docker deployment
 ```bash
 $ docker-compose up
@@ -49,19 +60,12 @@ To change default logo
 $ cd /config/logo/
 $ vim calipso-constants.ts # url of the logo
 ```
-# Facilities
-To add some facilities
-```bash
-cd scripts/manage
-vim default_facilities.json
-sh import_facilities.sh # import facilities from json
-```
 
-# Experiments
+# Experiments/Sessions
 To add some experiments 
 ```bash
 $ cd scripts/manage
-$ sh import_experiments_calipso1.sh # insert experiments to user calipso1
+$ sh populate_calipso1.sh # insert experiments an sessions to user calipso1
 ```
 
 # All done
