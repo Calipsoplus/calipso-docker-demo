@@ -1,4 +1,4 @@
-version: '3.4'
+version: '3.3'
 services:
   db-calipso:
      image: mysql
@@ -61,7 +61,7 @@ services:
   guacd:
      container_name: guacd01
      hostname: guacd
-     image: guacamole/guacd
+     image: guacamole/guacd:0.9.14
      restart: always
      ports:
       - 4822:4822
@@ -70,7 +70,7 @@ services:
 
   guacamole:
     container_name: guacamole01
-    image: guacamole/guacamole
+    image: guacamole/guacamole:0.9.14
     restart: always
     ports:
       - 8080:8080

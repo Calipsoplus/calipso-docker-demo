@@ -10,11 +10,13 @@ FROM python:3.5-alpine
 
  RUN mkdir /config 
  ADD /config/database/ /secret/
+ ADD /config/ /config/
  RUN mkdir /logs  
  RUN pip install --upgrade setuptools
  RUN mkdir /src
  ADD /backend/calipsoplus-backend/ /src/
  RUN pip install -r /src/requirements.txt
+ ADD /backend/calipsoplus-backend/calipsoplus/settings_docker.py.example /src/calipsoplus/settings_docker.py
+ ADD /backend/calipsoplus-backend/calipsoplus/settings_calipso.py.example /src/calipsoplus/settings_calipso.py
  
  WORKDIR /src
-
