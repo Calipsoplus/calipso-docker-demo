@@ -1,8 +1,0 @@
-[client]
-database = calipsoplus
-host = mysql0-calipso
-port = 3306
-user = admin
-password = admincamps
-default-character-set = utf8
-
