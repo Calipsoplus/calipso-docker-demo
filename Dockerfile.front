@@ -16,5 +16,5 @@ COPY ./frontend/calipsoplus-frontend/src/environments/environment.ts.example ./s
 COPY ./frontend/calipsoplus-frontend/src/environments/environment.docker.ts.example ./src/environments/environment.docker.ts
 
 ## Build the angular app in production mode and store the artifacts in dist folder
-RUN $(npm bin)/ng build --prod --configuration=docker --base-href '/'   
+RUN $(npm bin)/ng build --prod --configuration=docker --base-href '/'
 
