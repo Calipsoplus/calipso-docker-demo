@@ -1,7 +1,0 @@
-[client]
-database = guacdb
-host = mysql0-guacd
-port = 3306
-user = admin
-password = admincamps
-default-character-set = utf8
