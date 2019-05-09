@@ -53,7 +53,14 @@ $ sh setup.sh
 * And then run with docker-compose up
 
 # All done
-Now can access to ```http://localhost``` to view the application
+Modifying /etc/hosts with the IP machine like
+
+```bash
+X.X.X.X web-front
+```
+Where X.X.X.X is the IP from the machine which docker-compose is running.
+
+Now, you can access to ```http://web-front``` to view the application 
 
 # Proposals/Sessions
 * To add some proposals, after login
