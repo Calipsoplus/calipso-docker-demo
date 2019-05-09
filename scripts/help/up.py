@@ -4,7 +4,6 @@ import re
 import socket
 import shutil
 
-
 shutil.copy('../../config/settings/settings_docker.py.example','../../backend/calipsoplus-backend/calipsoplus/settings_docker.py.example')
 
 filename='../../backend/calipsoplus-backend/calipsoplus/settings_docker.py.example'
@@ -21,7 +20,11 @@ old_value = matches[9]
 #get host/ip for docker daemon
 question = "Enter IP where docker daemon lives: [%s] " % old_value 
 while True:
-    var_ip = input(question)
+    try:
+        var_ip = raw_input(question)
+    except NameError:
+        var_ip = input(question)
+
     if var_ip=='':
         var_ip=old_value
         break    
@@ -88,7 +91,10 @@ old_value = matches[3]
 question = "Enter the address of facility logo : [%s] " % old_value 
 
 while True:
-    var_logo = input(question)
+    try:
+        var_logo = raw_input(question)
+    except NameError:
+        var_logo = input(question)
     if var_logo=='':
         var_logo=old_value
         break 
@@ -118,8 +124,8 @@ with open(filename, 'r') as file :
   filedata = file.read()
 
 # Replace the target string
-new_text = "ALLOW_LOCAL_AUTHENTICATION = 0"
-old_text = "ALLOW_LOCAL_AUTHENTICATION = 1"
+new_text = "ALLOW_LOCAL_AUTHENTICATION = 1"
+old_text = "ALLOW_LOCAL_AUTHENTICATION = 0"
 
 filedata  = filedata.replace(old_text,new_text)
 
