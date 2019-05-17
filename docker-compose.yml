@@ -10,8 +10,6 @@ services:
        MYSQL_DATABASE: calipsoplus
        MYSQL_USER: admin 
        MYSQL_PASSWORD: admincamps
-     ports:
-       - "3306:3306"
      volumes:
       - ./scripts/mysql/calipsoplus.sql:/docker-entrypoint-initdb.d/dump.sql
 
@@ -25,8 +23,6 @@ services:
        MYSQL_DATABASE: guacdb
        MYSQL_USER: admin 
        MYSQL_PASSWORD: admincamps
-     ports:
-       - "3307:3306"
      volumes:
        - ./scripts/mysql/guacamole.sql:/docker-entrypoint-initdb.d/dump.sql
 
@@ -62,8 +58,6 @@ services:
      container_name: guacd01
      image: guacamole/guacd:0.9.14
      restart: always
-     ports:
-      - 4822:4822
      depends_on:
       - db-guacamole  
 
@@ -71,8 +65,6 @@ services:
     container_name: guacamole01
     image: guacamole/guacamole:0.9.14
     restart: always
-    ports:
-      - 8080:8080
     environment:
       GUACD_HOSTNAME: guacd
       GUACD_PORT: 4822
@@ -93,6 +85,4 @@ services:
       context : ./mock-login/calipsoplus-local-login-mock
       dockerfile: Dockerfile
     container_name: mocklogin01
-    ports:
-      - 8002:8000
 
