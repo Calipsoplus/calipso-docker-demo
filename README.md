@@ -1,17 +1,17 @@
 # Calipsoplus dockerized app
 
-This is the main file which required for the ```CalipsoPlus``` portal.
+* This is the main file which required for the ```CalipsoPlus``` portal.
 
 **IMPORTANT:** This is only intended to be a demonstration system, not to be used for actual production.
 
 ## Prepare
-Get latest source
+* Get latest source
 ```bash
 $ git clone https://github.com/Calipsoplus/calipso-docker-demo.git
 ```
 
 ## Folders organization
-* tree
+* Folders tree
 
 ```bash
 /.
@@ -48,22 +48,22 @@ $ cd ..
 * To put the IP from docker machine and logo from facility
 ```bash
 $ sh setup.sh
-```
-* Now you can build with: docker-compose build
-* And then run with docker-compose up
-
-# All done
-Modifying /etc/hosts with the IP machine like
-
-```bash
+# edit etc/hosts
+$ vim /etc/hosts
+# add IP and web-front hostname
 X.X.X.X web-front
+# start up service with
+$ docker-compose build
+$ docker-compose up
 ```
 Where X.X.X.X is the IP from the machine which docker-compose is running.
 
 Now, you can access to ```http://web-front``` to view the application 
 
-# Proposals/Sessions
-* To add some proposals, after login
+## Proposals/Sessions
+* Once you have been logged with calipso1 as username, then you can add to him some proposals/sessions. 
+* To add these data you can use the next script.
+
 ```bash
 $ cd scripts/manage
 $ sh populate_calipso1.sh # insert experiments an sessions to user calipso1
