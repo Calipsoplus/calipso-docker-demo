@@ -70,7 +70,7 @@ $ cd scripts/manage
 $ sh populate_calipso1.sh # insert experiments an sessions to user calipso1
 ```
 ## Docker as a service
-* Must run docker as a service
+* In the docker server, docker has to run as a service
 ```
 https://docs.docker.com/install/linux/linux-postinstall/#control-where-the-docker-daemon-listens-for-connections
 ```
