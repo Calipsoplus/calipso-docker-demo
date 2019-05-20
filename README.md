@@ -45,12 +45,14 @@ $ cd ..
 ```
 
 ## Run Setup
-* To put the IP from docker machine and logo from facility
+* Set the Docker Server IP address(*) and the Logo URL of your facility
 ```bash
 $ sh setup.sh
+```
+* add IP and web-front hostname
+```bash
 # edit etc/hosts
 $ vim /etc/hosts
-# add IP and web-front hostname
 X.X.X.X web-front
 # start up service with
 $ docker-compose build
@@ -61,10 +63,14 @@ Where X.X.X.X is the IP from the machine which docker-compose is running.
 Now, you can access to ```http://web-front``` to view the application 
 
 ## Proposals/Sessions
-* Once you have been logged with calipso1 as username, then you can add to him some proposals/sessions. 
-* To add these data you can use the next script.
+* Don't forget to log in using calipso1/calipso1 first.
 
 ```bash
 $ cd scripts/manage
 $ sh populate_calipso1.sh # insert experiments an sessions to user calipso1
+```
+## Docker as a service
+* Must run docker as a service
+```
+https://docs.docker.com/install/linux/linux-postinstall/#control-where-the-docker-daemon-listens-for-connections
 ```
